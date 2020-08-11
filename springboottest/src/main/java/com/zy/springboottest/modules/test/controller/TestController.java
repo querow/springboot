@@ -33,6 +33,6 @@ public class TestController {
         LOGGER.info("This is info log");
         LOGGER.warn("This is warn log");
         LOGGER.error("This is error log");
-        return "This is log test";
+        return "This is a big da";
     }
 }
