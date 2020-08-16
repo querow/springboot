@@ -26,4 +26,9 @@ public class CityController {
     public PageInfo<City> getCitiesBySearchVo(@PathVariable int countryId,@RequestBody SearchVo searchVo){
         return service.getCitiesBySearchVo(countryId, searchVo);
     }
+
+    @PostMapping(value="/cities",consumes = "application/json")
+    public PageInfo<City> getCitiesBySearchVo(@RequestBody SearchVo searchVo){
+        return service.getCitiesByDearchVo(searchVo);
+    }
 }

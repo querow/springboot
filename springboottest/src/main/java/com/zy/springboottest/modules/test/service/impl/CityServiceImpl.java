@@ -14,7 +14,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CityServiceImpl implements CityService {
+public class
+CityServiceImpl implements CityService {
 
     @Autowired
     private CityDao dao;
@@ -28,9 +29,20 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public PageInfo<City> getCitiesBySearchVo(int countryId, SearchVo searchVo) {
+        searchVo.initSearchVo();
         PageHelper.startPage(searchVo.getCurrentPage(),searchVo.getPageSize());
         return new PageInfo<City>(
                 Optional.ofNullable(dao.getCitiesByCountryId(countryId))
                         .orElse(Collections.emptyList()));
+    }
+
+    @Override
+    public PageInfo<City> getCitiesByDearchVo(SearchVo searchVo) {
+        searchVo.initSearchVo();
+        PageHelper.startPage(searchVo.getCurrentPage(),searchVo.getPageSize());
+        return new PageInfo<City>(
+                Optional.ofNullable(dao.getCitiesByDearchVo(searchVo))
+                .orElse(Collections.emptyList()));
+
     }
 }

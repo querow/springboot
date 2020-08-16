@@ -11,4 +11,6 @@ public interface CityService {
     List<City> getCitiesByCountryId(int countryId);
 
     PageInfo<City> getCitiesBySearchVo(int countryId, SearchVo searchVo);
+
+    PageInfo<City> getCitiesByDearchVo(SearchVo searchVo);
 }
