@@ -8,7 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -40,6 +43,15 @@ public class TestController {
     public String indexPage(ModelMap modelMap){
         modelMap.addAttribute("template","test/index");
         modelMap.addAttribute("name","ahahahah~");
+        modelMap.addAttribute("changType","button");
         return "index";
+    }
+
+    @GetMapping("/testDesc")
+    @ResponseBody
+    public String testDesc(HttpServletRequest request,
+                           @RequestParam(value = "paramKey") String paramValue) {
+        String paramValue2 = request.getParameter("paramKey");
+        return "This is test module desc." + paramValue + "==" + paramValue2;
     }
 }
