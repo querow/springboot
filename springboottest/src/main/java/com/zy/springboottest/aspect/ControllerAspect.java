@@ -32,11 +32,11 @@ public class ControllerAspect {
      * (..) 代表参数不限
      * Order 代表优先级，数字越小优先级越高
      */
-    @Pointcut("execution(public * com.sfac.javaSpringBoot.modules.*.controller.*.*(..))")
+    @Pointcut("execution(public * com.zy.springboottest.modules.*.controller.*.*(..))")
     @Order(1)
     public void controllerPointCut() {}
 
-    @Before(value = "com.sfac.javaSpringBoot.aspect.ControllerAspect.controllerPointCut()")
+    @Before(value = "com.zy.springboottest.aspect.ControllerAspect.controllerPointCut()")
     public void beforeController(JoinPoint joinpoint) {
         LOGGER.debug("==== This is before controller ====");
         ServletRequestAttributes attributes =
@@ -51,14 +51,14 @@ public class ControllerAspect {
         LOGGER.debug("请求参数：" + Arrays.toString(joinpoint.getArgs()));
     }
 
-    @Around(value = "com.sfac.javaSpringBoot.aspect.ControllerAspect.controllerPointCut()")
+    @Around(value = "com.zy.springboottest.aspect.ControllerAspect.controllerPointCut()")
     public Object aroundController(ProceedingJoinPoint proceedingJoinPoint)
             throws Throwable {
         LOGGER.debug("==== This is around controller ==== ");
         return proceedingJoinPoint.proceed(proceedingJoinPoint.getArgs());
     }
 
-    @After(value = "com.sfac.javaSpringBoot.aspect.ControllerAspect.controllerPointCut()")
+    @After(value = "com.zy.springboottest.aspect.ControllerAspect.controllerPointCut()")
     public void afterController() {
         LOGGER.debug("==== This is after controller ====");
     }

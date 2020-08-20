@@ -3,10 +3,7 @@ package com.zy.springboottest.modules.test.dao;
 
 import com.zy.springboottest.modules.common.vo.SearchVo;
 import com.zy.springboottest.modules.test.entity.City;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -40,6 +37,12 @@ public interface CityDao {
             "values (#{cityName}, #{localCityName}, #{countryId}, #{dateCreated})")
     @Options(useGeneratedKeys = true, keyColumn = "city_id", keyProperty = "cityId")
     void insertCity(City city);
+
+    @Update("update m_city set city_name = #{cityName} where city_id = #{cityId}")
+    void updateCity(City city);
+
+    @Delete("delete from m_city where city_id = #{cityId}")
+    void deleteCity(int cityId);
 
 
 }
