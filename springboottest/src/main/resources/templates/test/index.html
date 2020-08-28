@@ -1,4 +1,20 @@
-<h3>th:text</h3>
-<h1 th:text="${name}" >this is your name</h1>
+<div class = "right_col" role="main">
+    <h3>th:text</h3>
+    <h1 th:text="${name}" >this is your name</h1>
 
-button:<input type="text" th:attr="type=${changType}"/>
+    button:<input type="text" th:attr="type=${changType}"/>
+
+    <br/>
+    <p th:text="${message}"></p>
+    <p>上传文件，使用multipart/form-data类型</p>
+    <form action="/test/file" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">上传</button>
+    </form>
+    <form action="/test/files" method="post" enctype="multipart/form-data">
+        <input type="file" name="files" multiple="multiple">
+        <input type="submit" value="多文件提交">
+    </form>
+    <h3>file download</h3>
+    <a href="/test/file?fileName=赵艺简历.doc">download</a>
+</div>
