@@ -1,4 +1,4 @@
-package com.zy.springboottest.config;
+package com.zy.springboottest.config.redis;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;

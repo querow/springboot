@@ -2,7 +2,7 @@ package com.zy.springboottest.modules.account.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.management.relation.Role;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
