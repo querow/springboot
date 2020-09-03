@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 public interface UserDao {
 
-    @Insert("insert into user(user_name,password,user_image,create_date) values(#{userName},#{password},#{userImage},#{createDate})")
+    @Insert("insert into user(user_name,password,user_img,create_date) values(#{userName},#{password},#{userImg},#{createDate})")
     @Options(useGeneratedKeys = true,keyProperty = "userId",keyColumn = "user_id")
     void insertUser(User user);
 

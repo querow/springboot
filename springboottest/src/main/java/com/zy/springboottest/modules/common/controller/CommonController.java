@@ -17,4 +17,9 @@ public class CommonController {
     public String dashboard2Page() {
         return "index";
     }
+
+    @GetMapping("/403")
+    public String errorPageFor403() {
+        return "index";
+    }
 }

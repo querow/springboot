@@ -12,6 +12,7 @@ import com.zy.springboottest.modules.common.vo.Result;
 import com.zy.springboottest.modules.common.vo.SearchVo;
 import com.zy.springboottest.utils.MD5Util;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,13 +70,27 @@ public class UserServiceImpl implements UserService {
     @Override
     public Result<User> login(User user) {
         User userTemp = userDao.getUserByUserName(user.getUserName());
-        if (userTemp != null &&
-                userTemp.getPassword().equals(MD5Util.getMD5(user.getPassword(),user.getUserName()))) {
-            return new Result<>(Result.ResultStatus.SUCCESS.status, "Success.", userTemp);
+        Subject subject = SecurityUtils.getSubject();
+
+        UsernamePasswordToken usernamePasswordToken =
+                new UsernamePasswordToken(user.getUserName(),
+                        MD5Util.getMD5(user.getPassword(),user.getUserName()));
+        usernamePasswordToken.setRememberMe(user.getRememberMe());
+
+        try {
+            subject.login(usernamePasswordToken);
+            subject.checkRoles();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Result<User>(Result.ResultStatus.FAILD.status,
+                    "UserName or password is error.");
         }
 
-        return new Result<User>(Result.ResultStatus.FAILD.status,
-                "UserName or password is error.");
+        Session session = subject.getSession();
+        session.setAttribute("user", (User)subject.getPrincipal());
+
+        return new Result<User>(Result.ResultStatus.SUCCESS.status,
+                "Login success.", user);
     }
 
     @Override

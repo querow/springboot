@@ -3,12 +3,10 @@ package com.zy.springboottest.config.redis;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 @Component
 public class RedisClusterProperties {
-    @Value("${spring.redis.cluster.nodes}")
-    private List<String> nodes;
+//    @Value("${spring.redis.cluster.nodes}")
+//    private List<String> nodes;
     @Value("${spring.redis.cluster.max-redirects:8}")
     private Integer maxRedirects;
     @Value("${spring.redis.jedis.pool.max-active:8}")
@@ -20,13 +18,13 @@ public class RedisClusterProperties {
     @Value("${spring.redis.jedis.pool.max-wait:10000}")
     private int maxWait;
 
-    public List<String> getNodes() {
-        return nodes;
-    }
-
-    public void setNodes(List<String> nodes) {
-        this.nodes = nodes;
-    }
+//    public List<String> getNodes() {
+//        return nodes;
+//    }
+//
+//    public void setNodes(List<String> nodes) {
+//        this.nodes = nodes;
+//    }
 
     public Integer getMaxRedirects() {
         return maxRedirects;
