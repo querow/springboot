@@ -4,7 +4,7 @@
 		IPython
 		Jython
 		py
-	下列哪个表达式在Python中是非法的？C
+	下列哪个表达式在Python中是非法的？B
 		x = y = z = 1
 		x = (y = z + 1)
 		x, y = y, x
